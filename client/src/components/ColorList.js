@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import { axiosWithAuth } from '../api/axiosWithAuth'
 
 const initialColor = {
   color: "",
@@ -7,9 +7,12 @@ const initialColor = {
 };
 
 const ColorList = ({ colors, updateColors }) => {
-  console.log(colors);
+
+  console.log('colors', colors);
+
   const [editing, setEditing] = useState(false);
   const [colorToEdit, setColorToEdit] = useState(initialColor);
+
 
   const editColor = color => {
     setEditing(true);
@@ -17,14 +20,49 @@ const ColorList = ({ colors, updateColors }) => {
   };
 
   const saveEdit = e => {
+    console.log('colorToEdit:', colorToEdit)
     e.preventDefault();
     // Make a put request to save your updated color
     // think about where will you get the id from...
     // where is is saved right now?
+    axiosWithAuth()
+      .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
+      .then((res) => {
+        console.log('saveEdit: res: ', res);
+
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.error(
+            "saveEdit failed: response from server: ",
+            err.response.data
+          );
+        } else {
+          console.error("saveEdit failed", err);
+        }
+      });
+
   };
 
   const deleteColor = color => {
     // make a delete request to delete this color
+    console.log('color:', color)
+    axiosWithAuth()
+      .delete(`/api/colors/${color.id}`, color)
+      .then((res) => {
+        console.log('deleteColor: res: ', res);
+
+      })
+      .catch((err) => {
+        if (err.response) {
+          console.error(
+            "deleteColor failed: response from server: ",
+            err.response.data
+          );
+        } else {
+          console.error("deleteColor failed", err);
+        }
+      });
   };
 
   return (
@@ -35,11 +73,11 @@ const ColorList = ({ colors, updateColors }) => {
           <li key={color.color} onClick={() => editColor(color)}>
             <span>
               <span className="delete" onClick={e => {
-                    e.stopPropagation();
-                    deleteColor(color)
-                  }
-                }>
-                  x
+                e.stopPropagation();
+                deleteColor(color)
+              }
+              }>
+                x
               </span>{" "}
               {color.color}
             </span>
