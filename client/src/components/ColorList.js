@@ -71,7 +71,7 @@ const ColorList = ({ colors, updateColors }) => {
   return (
     <div className="colors-wrap">
       <p>colors</p>
-      <ul>
+      <ul data-testid='color'>
         {colors.map(color => (
           <li key={color.color} onClick={() => editColor(color)}>
             <span>
