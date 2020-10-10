@@ -28,9 +28,25 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 Be prepared to demonstrate your understanding of this week's concepts by answering questions on the following topics. You might prepare by writing down your own answers before hand.
 
 1. Explain what a token is used for.
+   
+   - A token is given by a an authentication server to an authenticated user to ensure prove that they are authenticated and gives them access to the appropriate data (in our case, access to a private route). 
+
+
 2. What steps can you take in your web apps to keep your data secure?
+
+  - Some steps we can take at this level to securue our websites are enforcing authentication, using private routes, and filtering and cleaning (i.e., validating) input.
+
+
 3. Describe how web servers work.
+
+  - Web servers work with a protocol called Domain Name Service (DNS). It acts as a phonebook for the internet. Every website has a 32 bit ip address. However, remembering these would be impossible, so we resort to readable domain names like google.com or Lambdaschool.com. When we type these domain names into a our search bars, our browsers, those names have to be translated into an ip address. So, first it checks our local cache to see if we have an entry for that domain saved, if not DNS sends requests to a heirarchy of servers to find the correct adress. If and When the correct ip address is returned, our browser then sends an http request to the server sitting at that address and the web page is served to us. 
+
 4. Which HTTP methods can be mapped to the CRUD acronym that we use when interfacing with APIs/Servers.
+
+    Create - POST
+    Read - GET
+    Update - PUT
+    Delete - DELETE
 
 You are expected to be able to answer questions in these areas. Your responses contribute to your Sprint Challenge grade. 
 
@@ -59,14 +75,14 @@ Your finished project must include all of the following requirements:
 
 Build a login form to authenticate your users.
 
-- [ ] Construct an AXIOS request to retrieve a token from the server. You'll use this token to interact with the API
-- [ ] Save the token to localStorage
-- [ ] Build a `axiosWithAuth` module to create an instance of axios with the authentication header
-- [ ] Build a `PrivateRoute` component and use it to protect a route that renders the `BubblesPage` component
+- [x] Construct an AXIOS request to retrieve a token from the server. You'll use this token to interact with the API
+- [x] Save the token to localStorage
+- [x] Build a `axiosWithAuth` module to create an instance of axios with the authentication header
+- [x] Build a `PrivateRoute` component and use it to protect a route that renders the `BubblesPage` component
 
 #### Stage 2 - Consuming the API
 
-- [ ] When `BubblePages` renders, make a GET request to fetch the color data for your bubbles.
+- [x] When `BubblePages` renders, make a GET request to fetch the color data for your bubbles.
 - [ ] In `ColorList.js`, complete the `saveEdit` and `deleteColor` functions to make AJAX requests to the API to edit/delete data
 - [ ] Watch and enjoy as your app responds to updates in the data. Check out `Bubbles.js` to see how this is built.
 
