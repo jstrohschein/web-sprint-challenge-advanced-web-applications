@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { axiosWithAuth } from '../api/axiosWithAuth'
+import { useHistory } from 'react-router-dom'
 
 const initialColor = {
   color: "",
@@ -7,6 +8,8 @@ const initialColor = {
 };
 
 const ColorList = ({ colors, updateColors }) => {
+
+  const { push } = useHistory()
 
   console.log('colors', colors);
 
@@ -29,7 +32,7 @@ const ColorList = ({ colors, updateColors }) => {
       .put(`/api/colors/${colorToEdit.id}`, colorToEdit)
       .then((res) => {
         console.log('saveEdit: res: ', res);
-
+        push('/bubble_page')
       })
       .catch((err) => {
         if (err.response) {
@@ -51,7 +54,7 @@ const ColorList = ({ colors, updateColors }) => {
       .delete(`/api/colors/${color.id}`, color)
       .then((res) => {
         console.log('deleteColor: res: ', res);
-
+        push('/bubble_page')
       })
       .catch((err) => {
         if (err.response) {

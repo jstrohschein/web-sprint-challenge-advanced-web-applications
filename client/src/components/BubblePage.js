@@ -34,7 +34,7 @@ const BubblePage = () => {
       });
   }
 
-  useEffect(() => getColors(), [])
+  useEffect(() => getColors(), [history.location.key])
 
   return (
     <>
